@@ -1,17 +1,29 @@
-# HTML
-# Archive your static HTML project and save it with the build record.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+  - main  # Trigger pipeline when changes are pushed to the main branch
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-latest  # Use a hosted Ubuntu agent
 
 steps:
-- task: ArchiveFiles@2
+# Step 1: Checkout the code from GitHub
+- checkout: self
+
+# Step 2: Set up Node.js environment
+- task: UseNode@1
   inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: false
-- task: PublishBuildArtifacts@1
+    version: '18.x'  # Use Node.js 18 LTS
+
+# Step 3: Install npm dependencies (if you have a package.json)
+- script: |
+    npm install
+  displayName: 'Install npm dependencies'
+
+# Step 4: (Optional) Build step, if you have a build script
+# - script: |
+#     npm run build
+#   displayName: 'Build the app'
+
+# Step 5: (Optional) Run tests, if you want to keep testing
+# - script: |
+#     npm test
+#   displayName: 'Run tests'
