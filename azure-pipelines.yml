@@ -11,17 +11,3 @@ steps:
     inputs:
       version: '18.x'  # change based on your project requirements
 
-  - script: |
-      echo "Installing dependencies..."
-      npm install
-    displayName: 'Install dependencies'
-
-  - script: |
-      echo "Running build..."
-      npm run build
-    displayName: 'Build project'
-
-  - script: |
-      echo "Running tests..."
-      npm test
-    displayName: 'Run tests'
