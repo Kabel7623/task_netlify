@@ -1,12 +1,15 @@
+trigger:
+- main  # Or your branch name
+
 jobs:
 - job: Job1
   pool:
     vmImage: 'ubuntu-latest'
   steps:
-    - script: echo "Running Job1"
+    - script: echo "Running Job1 on Agent 1"
 
 - job: Job2
   pool:
     vmImage: 'ubuntu-latest'
   steps:
-    - script: echo "Running Job2"
+    - script: echo "Running Job2 on Agent 2"
