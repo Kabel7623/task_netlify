@@ -1,13 +1,12 @@
-# azure-pipelines.yml
+jobs:
+- job: Job1
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+    - script: echo "Running Job1"
 
-trigger:
-  - main  # or use '*' to run for all branches
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-  - task: UseNode@1
-    inputs:
-      version: '18.x'  # change based on your project requirements
-
+- job: Job2
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+    - script: echo "Running Job2"
