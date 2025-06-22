@@ -1,29 +1,27 @@
+# azure-pipelines.yml
+
 trigger:
-  - main  # Trigger pipeline when changes are pushed to the main branch
+  - main  # or use '*' to run for all branches
 
 pool:
-  vmImage: ubuntu-latest  # Use a hosted Ubuntu agent
+  vmImage: 'ubuntu-latest'
 
 steps:
-# Step 1: Checkout the code from GitHub
-- checkout: self
+  - task: UseNode@1
+    inputs:
+      version: '18.x'  # change based on your project requirements
 
-# Step 2: Set up Node.js environment
-- task: UseNode@1
-  inputs:
-    version: '18.x'  # Use Node.js 18 LTS
+  - script: |
+      echo "Installing dependencies..."
+      npm install
+    displayName: 'Install dependencies'
 
-# Step 3: Install npm dependencies (if you have a package.json)
-- script: |
-    npm install
-  displayName: 'Install npm dependencies'
+  - script: |
+      echo "Running build..."
+      npm run build
+    displayName: 'Build project'
 
-# Step 4: (Optional) Build step, if you have a build script
-# - script: |
-#     npm run build
-#   displayName: 'Build the app'
-
-# Step 5: (Optional) Run tests, if you want to keep testing
-# - script: |
-#     npm test
-#   displayName: 'Run tests'
+  - script: |
+      echo "Running tests..."
+      npm test
+    displayName: 'Run tests'
