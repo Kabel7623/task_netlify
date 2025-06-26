@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-  background-color: white;
+  background-color: lightpink;
   padding: 20px 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -46,7 +46,7 @@ button:hover {
 }
 
 .option {
-  background-color: #eee;
+  background-color: black;
   border: none;
   padding: 10px;
   margin: 5px 0;
